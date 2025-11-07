@@ -19,16 +19,31 @@
   margin-bottom: 2rem;
 }
 
+/* MUDANÇA: Renomeado de .mainText para .mainTextWrapper */
+/* Este é o container */
+.mainTextWrapper {
+  max-width: 750px; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem; /* Margem abaixo do bloco de texto */
+}
+
+/* MUDANÇA: .mainText agora é para CADA parágrafo */
 .mainText {
   font-family: var(--font-sans);
   /* MUDANÇA: Fonte dinâmica */
   font-size: clamp(1rem, 2.5vw, 1.125rem); /* 18px */
   line-height: 1.7;
-  max-width: 750px; 
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 4rem;
+  
+  /* ADIÇÃO: Espaçamento entre parágrafos */
+  margin-bottom: 1.5rem; 
 }
+
+/* ADIÇÃO: Remove a margem do último parágrafo */
+.mainTextWrapper > .mainText:last-of-type {
+  margin-bottom: 0;
+}
+
 
 /* Container para os 3 blocos */
 .blocksWrapper {

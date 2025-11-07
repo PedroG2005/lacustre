@@ -1,13 +1,19 @@
-import type { PageData } from '../../lib/api'; // Reutiliza a interface PageData
+import type { PageData, WpBlock } from '../../lib/api'; // MUDANÇA: Importar WpBlock
 import styles from './About.module.css';
 
 interface AboutProps {
   data: PageData; // O componente recebe os dados da página "Sobre"
 }
 
+// MUDANÇA: Adicionar a interface para os atributos do parágrafo
+interface ParagraphAttributes {
+  content: string;
+}
+
 export default function About({ data }: AboutProps) {
   const title = data.title;
-  const content = data.content;
+  // MUDANÇA: Usar data.blocks em vez de data.content
+  const blocks = data.blocks;
 
   return (
     <section 
@@ -23,12 +29,25 @@ export default function About({ data }: AboutProps) {
       )}
 
       {/* Texto Principal (Vindo do Conteúdo do WP) */}
-      {content && (
-        <div 
-          className={styles.mainText}
-          dangerouslySetInnerHTML={{ __html: content }} 
-        />
-      )}
+      <div className={styles.mainTextWrapper}>
+        {/* MUDANÇA: 'blocks' agora está definido */}
+        {blocks &&
+          blocks.map((block: WpBlock, index: number) => {
+            // 2. Renderizamos apenas parágrafos
+            if (block.name === "core/paragraph") {
+              const attrs = block.attributes as unknown as ParagraphAttributes;
+              return (
+                <p
+                  key={index}
+                  // 3. Aplicamos o estilo .mainText a cada parágrafo
+                  className={styles.mainText}
+                  dangerouslySetInnerHTML={{ __html: attrs.content }}
+                />
+              );
+            }
+            return null;
+          })}
+      </div>  
 
       {/* --- Mini-blocos (Hardcoded) --- */}
       <div className={styles.blocksWrapper}>
