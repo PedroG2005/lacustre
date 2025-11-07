@@ -1,0 +1,156 @@
+.gastroSection {
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr; /* Coluna única em mobile */
+  gap: 3rem;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- ADIÇÃO: Reseta o alinhamento em telas maiores --- */
+  .textWrapper {
+    align-items: flex-start; /* Alinha o botão à esquerda */
+  }
+
+  .title {
+    text-align: left; /* Alinha título à esquerda */
+  }
+  
+  .mainText {
+    text-align: left; /* Alinha parágrafos à esquerda */
+  }
+  /* --- FIM DA ADIÇÃO --- */
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  /* MUDANÇA: Centraliza o conteúdo (botão) na coluna */
+  align-items: center; 
+  align-self: flex-start;
+}
+
+.title {
+  font-family: var(--font-serif);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  overflow-wrap: break-word; /* Garante que o título não estoure */
+  
+  /* MUDANÇA: Centraliza o título em mobile */
+  text-align: center;
+}
+
+.mainText {
+  font-family: var(--font-sans);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.7;
+  opacity: 0.9;
+
+  /* Adiciona espaçamento entre os parágrafos */
+  margin-bottom: 1.5rem;
+
+  /* MUDANÇA: Centraliza o texto em mobile */
+  text-align: center;
+}
+
+/* --- ADIÇÃO CRUCIAL --- */
+/* Remove a margem do último parágrafo antes do botão */
+.textWrapper > .mainText:last-of-type {
+  margin-bottom: 0;
+}
+
+
+/* --- ESTILOS ATUALIZADOS --- */
+
+/* O novo wrapper da coluna da direita (substitui a galeria) */
+.chefWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Já centraliza o conteúdo */
+  width: 100%;
+
+  /* --- MUDANÇAS AQUI (Valores restaurados) --- */
+  padding: 2rem; /* Padding interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  margin-top: 2rem; /* Margem em mobile (restaurada) */
+  /* --- FIM DAS MUDANÇAS --- */
+}
+
+@media (min-width: 768px) {
+  .chefWrapper {
+    margin-top: 0; /* Remove a margem em telas maiores */
+  }
+}
+
+.chefImage {
+  width: 100%; /* <-- CORREÇÃO: Faz a imagem caber no container */
+  height: auto; /* <-- CORREÇÃO: Mantém a proporção da imagem */
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: none;
+}
+
+/* NOVO: Estilo para o nome do Chef */
+.chefName {
+  font-family: var(--font-serif);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(1.25rem, 4vw, 1.5rem); /* Era 1.5rem */
+  font-weight: 700;
+  color: rgb(var(--accent)); /* Destaque Ocre */
+  margin-bottom: 0.5rem;
+}
+
+.chefQuote {
+  font-family: var(--font-sans);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(1rem, 2.5vw, 1.125rem); /* Era 1.125rem */
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center; /* Centraliza a citação (já estava ok) */
+}
+
+/* --- INÍCIO DA MUDANÇA: Estilo do Botão Adicionado --- */
+
+.button {
+  font-family: var(--font-sans);
+  background-color: rgb(var(--accent)); /* Fundo Ocre */
+  color: rgb(var(--foreground)); /* Texto Verde */
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(0.8rem, 2vw, 0.875rem); /* Era 0.875rem */
+  font-weight: 700;
+  transition: all 0.2s;
+  border: 2px solid rgb(var(--accent));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 310px; /* Largura máxima para o botão */
+  margin-top: 2.5rem; /* Aumentei a margem para separar dos parágrafos */
+  text-align: center;
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}

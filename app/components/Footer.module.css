@@ -1,0 +1,99 @@
+.footer {
+    /* Fundo verde, texto bege */
+    background-color: rgb(var(--foreground));
+    color: rgb(var(--background));
+    
+    /* Padding simplificado */
+    padding: 2rem;
+    
+    border-top: 2px solid rgb(var(--accent)); /* Detalhe em Ocre */
+  }
+  
+  .wrapper {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* --- MUDANÇA PRINCIPAL --- */
+    /* Começa como coluna (empilhado) no celular */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; /* Centraliza tudo no celular */
+    justify-content: center;
+    gap: 2rem; /* Espaço entre os itens no celular */
+  }
+  
+  /* Em telas de desktop, muda para linha */
+  @media (min-width: 768px) {
+    .wrapper {
+      flex-direction: row;
+      justify-content: space-between; /* Espalha os 3 itens */
+      gap: 1rem;
+    }
+  }
+  
+  /* --- ITEM 1: LOGO --- */
+  .logoWrapper {
+    /* No desktop, o 'space-between' o empurra para a esquerda */
+  }
+  
+  .logoLink { 
+    display: block; 
+  }
+  .logoImage {
+    height: 40px; /* Um pouco menor para caber na linha */
+    width: auto;
+  }
+  .logoText {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  /* --- ITEM 2: COPYRIGHT --- */
+  .copyrightWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    /* No desktop, o 'space-between' o mantém no centro */
+  }
+  
+  .copyright {
+    font-family: var(--font-sans);
+    font-size: 0.875rem; /* 14px */
+    opacity: 0.7;
+    margin: 0;
+    white-space: nowrap; /* Impede que o copyright quebre a linha */
+  }
+  
+  .privacyLink {
+    font-family: var(--font-sans);
+    font-size: 0.8rem; /* 12px */
+    opacity: 0.7;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(var(--background));
+    white-space: nowrap;
+  }
+  .privacyLink:hover {
+    color: rgb(var(--accent));
+  }
+  
+  /* --- ITEM 3: REDES SOCIAIS --- */
+  .socialList {
+    display: flex;
+    gap: 1.5rem; /* Espaço entre os ícones */
+    /* No desktop, o 'space-between' o empurra para a direita */
+  }
+  
+  .socialLink {
+    color: rgb(var(--background));
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  .socialLink:hover {
+    opacity: 1;
+    color: rgb(var(--accent));
+  }

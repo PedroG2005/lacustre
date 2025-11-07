@@ -1,0 +1,112 @@
+.gallerySection {
+  /* Fundo bege, texto verde (do MIV) */
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  
+  padding-top: 100px; /* Compensa o header fixo */
+  padding-bottom: 100px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+}
+
+/* Wrapper para o Título e Botão */
+.header {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem; /* Espaço até o grid */
+}
+
+.title {
+  font-family: var(--font-serif);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Era 2.5rem */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+/* O grid para as imagens */
+.gridWrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* 1 coluna mobile */
+  gap: 1rem;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem; /* Espaço até o botão */
+}
+
+/* 2 colunas em tablet */
+@media (min-width: 640px) {
+  .gridWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 3 colunas em desktop */
+@media (min-width: 1024px) {
+  .gridWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* O bloco quadrado para a imagem */
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Força o bloco a ser quadrado */
+  border-radius: 8px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Garante que a imagem respeite o border-radius */
+  transition: transform 0.3s ease;
+}
+
+.imageWrapper:hover {
+  transform: scale(1.03); /* Efeito de zoom no hover */
+}
+
+/* Botão Ocre */
+.button {
+  font-family: var(--font-sans);
+  background-color: rgb(var(--accent)); /* Fundo Ocre */
+  color: rgb(var(--foreground)); /* Texto Verde */
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(0.8rem, 2vw, 0.875rem); /* Era 0.875rem */
+  font-weight: 700;
+  transition: all 0.2s;
+  border: 2px solid rgb(var(--accent));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* ... (todos os estilos .gallerySection, .gridWrapper, .button, etc.) ... */
+
+/* NOVO: Estilo para o player de vídeo */
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz o vídeo cobrir o espaço quadrado */
+}
+
+/* Novo estilo para o botão que envolve a imagem */
+.galleryButton {
+background: none;
+border: none;
+padding: 0;
+margin: 0;
+cursor: pointer;
+width: 100%;
+display: block;
+position: relative; /* Para o imageWrapper funcionar */
+}
+/* --- FIM DA MUDANÇA --- */

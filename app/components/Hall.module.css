@@ -1,0 +1,185 @@
+.hallSection {
+  /* Fundo verde, texto bege (do MIV) */
+  background-color: rgb(var(--foreground));
+  color: rgb(var(--background));
+
+  padding-top: 100px; /* Compensa o header fixo */
+  padding-bottom: 100px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* O container que divide em 2 colunas */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr; /* Coluna única em mobile */
+  gap: 3rem; /* Espaço entre a imagem e o texto */
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: start; 
+  text-align: center; /* Padrão: centralizado (mobile) */
+}
+
+/* Em telas de TABLET (768px+), mude o WRAPPER e ALINHE À ESQUERDA */
+@media (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    /* Alinhamento à esquerda para o container */
+    text-align: center; 
+  }
+
+  /* ADIÇÃO: Faz a imagem preencher sua coluna */
+  .image {
+    width: 100%;
+    max-width: none; /* Reseta o max-width de mobile */
+  }
+
+  /* MUDANÇA: Reseta o alinhamento do texto no tablet */
+  .textWrapper {
+    align-items: flex-start; /* Alinha o botão à esquerda */
+  }
+  
+  .paragraph {
+    /* MUDANÇA: Texto justificado para melhor diagramação */
+    text-align: justify; 
+  }
+}
+
+/* Em telas de DESKTOP (1024px+), não há mais regras específicas de layout */
+@media (min-width: 1024px) {
+  /* As regras de 768px (alinhamento justificado) continuam valendo */
+}
+
+.imageWrapper {
+  width: 100%;
+}
+
+.image {
+  width: 80%;
+  height: auto;
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; /* Garante que margens automáticas funcionem */
+  max-width: 500px; 
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  /* MUDANÇA: Centraliza o botão (e título) no modo mobile */
+  align-items: center; 
+}
+
+.title {
+  font-family: var(--font-serif);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(2rem, 5vw, 2.5rem); /* Era 2.5rem */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+
+  /* ADIÇÃO: Garante que palavras longas quebrem e não estourem o layout */
+  overflow-wrap: break-word;
+  word-wrap: break-word; /* Fallback para navegadores mais antigos */
+}
+
+.paragraph {
+  font-family: var(--font-sans);
+  /* MUDANÇA: Fonte dinâmica */
+  font-size: clamp(1rem, 2.5vw, 1.125rem); /* Era 1.125rem */
+  line-height: 1.7;
+  opacity: 0.9;
+  text-align: center; /* Padrão: centralizado (mobile) */
+
+  /* Adiciona o espaçamento natural entre parágrafos */
+  margin-bottom: 1.5rem;
+
+  overflow-wrap: break-word;
+}
+
+/* Garante que o último parágrafo não tenha margem extra */
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Grid para os 4 destaques */
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1.5rem; /* Ajuste o gap entre os cards */
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%; /* Garante que o grid ocupe o espaço */
+}
+
+.highlightItem {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 2vw, 1rem); 
+  line-height: 1.6;
+
+  /* --- MUDANÇA CRUCIAL: Flexbox para centralizar o conteúdo do card --- */
+  display: flex;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  text-align: center; /* Garante que o texto em si seja centralizado */
+  padding: 1.5rem; /* Padding interno do card */
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo bege-transparente sutil */
+  /* Min-height para garantir que os cards tenham altura mínima uniforme */
+  min-height: 8rem; /* Ajuste conforme a necessidade para mobile */
+  box-sizing: border-box; /* Garante que padding e border sejam incluídos na altura/largura */
+
+  /* Permite que o texto quebre em várias linhas dentro do card */
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Botão Ocre (copiado do Hero) */
+.button {
+  font-family: var(--font-sans);
+  background-color: rgb(var(--accent)); /* Fundo Ocre */
+  color: rgb(var(--foreground)); /* Texto Verde */
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: clamp(0.8rem, 2vw, 0.875rem); 
+  font-weight: 700;
+  transition: all 0.2s;
+  border: 2px solid rgb(var(--accent));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 280px; /* Aumentei um pouco a largura máxima para dar mais espaço */
+  margin-top: 3rem; /* Ajuste a margem superior para espaçamento do grid */
+  width: 100%; /* Permite que o botão se expanda em telas menores até o max-width */
+  box-sizing: border-box; /* Garante que padding e border sejam incluídos */
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Media query para ajustar min-height dos cards em telas maiores */
+@media (min-width: 768px) {
+  .highlightItem {
+    min-height: 6rem; /* Reduz a altura mínima em desktop, se preferir */
+  }
+}
+
+/* Media query para smartphones (ajustes finos se necessário) */
+@media (max-width: 640px) {
+  .highlightsGrid {
+    grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas, se preferir */
+    gap: 1rem;
+  }
+  .highlightItem {
+    min-height: 7rem; /* Garante altura mínima para um bom toque */
+    padding: 1.25rem;
+  }
+  .button {
+    max-width: 100%; /* Botão ocupa toda a largura em mobile */
+    padding: 0.85rem 1.5rem;
+  }
+}

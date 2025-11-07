@@ -1,0 +1,212 @@
+/* Hero.module.css — versão revisada com foco correto da imagem e espaçamento dos botões */
+
+/* Container principal */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center bottom; /* ⇐ foca a parte superior da imagem */
+  background-repeat: no-repeat;
+  background-color: rgb(var(--foreground));
+  overflow: hidden;
+  padding-top: 6rem; /* espaço para o header fixo */
+  margin-top: 80px;
+}
+
+
+/* Overlay escuro */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* Conteúdo */
+.content {
+  position: relative;
+  z-index: 2;
+  color: #FFFFFF;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  /* MUDANÇA: 'word-break: break-word;' removido (redundante e agressivo) */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Título principal */
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.15;
+  color: rgb(var(--color-bege));
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  /* MUDANÇA: Valores aumentados novamente */
+  font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+  /* MUDANÇA: Trocado 'anywhere' por 'break-word' para uma quebra mais suave */
+}
+
+/* Wrapper dos botões */
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+  margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+/* Estilo base dos botões */
+.button,
+.buttonSecondary {
+  font-family: var(--font-sans);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.18s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: visible;
+  /* MUDANÇA: Removidas as regras de quebra agressivas */
+  /* A quebra será controlada por 'white-space' nas media queries */
+}
+
+/* Botão primário */
+.button {
+  background-color: rgb(var(--accent));
+  color: rgb(var(--foreground));
+  border: 2px solid rgb(var(--accent));
+
+  /* ⇐ padding aumentado em telas grandes */
+  padding: clamp(0.75rem, 1.2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+  font-size: clamp(0.85rem, 1vw + 0.2rem, 1rem);
+  white-space: nowrap;
+}
+
+/* Hover primário */
+.button:hover {
+  opacity: 0.95;
+  transform: translateZ(0) scale(1.02);
+}
+
+/* Botão secundário */
+.buttonSecondary {
+  background-color: transparent;
+  color: rgb(var(--color-bege));
+  border: 2px solid rgb(var(--color-bege));
+
+  /* ⇐ mesmo ajuste de padding para espaçamento equilibrado */
+  padding: clamp(0.75rem, 1.2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Hover secundário */
+.buttonSecondary:hover {
+  background-color: rgb(var(--color-bege));
+  color: rgb(var(--foreground));
+  opacity: 1;
+}
+
+/* =========================
+   Responsividade
+   ========================= */
+
+/* Tablets e notebooks pequenos */
+@media (max-width: 1024px) {
+  .hero {
+    min-height: 90vh;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    background-position: center bottom; /* mantém foco inferior no mobile/tablet */
+    margin-top: 0;
+  }
+
+  .content {
+    max-width: 90%;
+    padding: clamp(1rem, 3.5vw, 2.25rem);
+  }
+
+  .headline {
+    font-size: clamp(1.85rem, 5vw, 2.75rem);
+  }
+
+  .button,
+  .buttonSecondary {
+    padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(0.9rem, 2.5vw, 1.4rem);
+    font-size: clamp(0.7rem, 1vw, 0.85rem);
+    white-space: normal;
+    max-width: 100%;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 640px) {
+  .hero {
+    min-height: 80vh;
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    background-position: center bottom;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .headline {
+    /* MUDANÇA: Aumentei os valores do clamp para mobile */
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    line-height: 1.25;
+  }
+
+  .buttonWrapper {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .button,
+  .buttonSecondary {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    /* MUDANÇA: Aumentei os valores do clamp para mobile */
+    font-size: clamp(0.3rem, 4vw, 0.8rem);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .button span,
+  .buttonSecondary span {
+    display: inline-block;
+    white-space: normal;
+    /* MUDANÇA: 'overflow-wrap: anywhere;' removido */
+    /* Deixa a quebra natural (entre palavras) funcionar */
+  }
+}
+
+/* Telas muito grandes */
+@media (min-width: 1600px) {
+  .hero {
+    min-height: 95vh;
+    /* ⇐ mantém imagem mais centralizada para exibir a pessoa corretamente */
+    background-position: center center;
+  }
+
+  .headline {
+    font-size: clamp(3rem, 2vw + 2rem, 4rem);
+  }
+
+  .button,
+  .buttonSecondary {
+    padding: 1rem 2.25rem; /* reforço para espaçamento confortável */
+    font-size: 1rem;
+  }
+}
