@@ -110,3 +110,11 @@ display: block;
 position: relative; /* Para o imageWrapper funcionar */
 }
 /* --- FIM DA MUDANÇA --- */
+
+/* Oculta as setas de navegação do Lightbox no mobile */
+@media (max-width: 768px) {
+  :global(.yarl__navigation_prev),
+  :global(.yarl__navigation_next) {
+    display: none !important;
+  }
+}

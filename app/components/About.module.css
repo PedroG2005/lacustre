@@ -1,10 +1,10 @@
 .aboutSection {
-  color: rgb(var(--foreground));
+  background-color: rgb(var(--foreground));
+  color: rgb(var(--background));
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 100px;
   padding-top: 100px;
-  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -50,6 +50,10 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  max-width: 900px;
+  align-items: stretch; /* Garante que todos os blocos tenham a mesma altura */
+  margin-left: auto;
+  margin-right: auto;
   
   /* --- MUDANÇA 1: Aumentado o espaçamento superior --- */
   margin-top: 4rem; /* (Estava 3rem) */
@@ -65,10 +69,9 @@
 .block {
   /* --- MUDANÇA 2: Centralizado o texto --- */
   text-align: center; /* (Estava 'left') */
-  
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: rgba(255, 255, 255, 0.05); /* Fundo bege-transparente sutil */
 }
 
 .blockIcon {

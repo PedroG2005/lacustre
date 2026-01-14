@@ -1,6 +1,6 @@
 "use client"; // Necessário para 'new Date()'
 import Image from 'next/image';
-import type { HeaderData } from '@/lib/api'; 
+import type { HeaderData } from '@/lib/api';
 import styles from './Footer.module.css';
 import { FaInstagram, FaFacebook, FaLinkedin } from 'react-icons/fa';
 
@@ -20,14 +20,14 @@ export default function Footer({ data }: FooterProps) {
         <div className={styles.logoWrapper}>
           <a href="#" className={styles.logoLink}>
             {siteLogoUrl ? (
-              <Image 
-                src={siteLogoUrl} 
+              <Image
+                src={siteLogoUrl}
                 alt={title || 'Logo da Lacustre'}
                 className={styles.logoImage}
                 width={150} // Mantido
                 height={50} // Mantido
                 priority
-                unoptimized 
+                unoptimized
               />
             ) : (
               <span className={styles.logoText}>{title}</span>
@@ -44,7 +44,7 @@ export default function Footer({ data }: FooterProps) {
 
         {/* --- ITEM 3: REDES SOCIAIS (Direita) --- */}
         <div className={styles.socialList}>
-          <a href="https://www.instagram.com/lacustrehall" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <a href="https://www.instagram.com/lacustrehalloficial" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaInstagram size={24} />
           </a>
           <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>

@@ -28,19 +28,19 @@ async function fetchAPI<T>(
 
 // --- Dados do Header ---
 export interface MenuItem {
-    id: string;
-    label: string;
-    path: string;
-  }
-  
-  export interface HeaderData {
-    generalSettings: {
-      title: string;
-      siteLogoUrl: string | null; 
-    };
-    menuItems: {
-      nodes: MenuItem[];
-    };
+  id: string;
+  label: string;
+  path: string;
+}
+
+export interface HeaderData {
+  generalSettings: {
+    title: string;
+    siteLogoUrl: string | null;
+  };
+  menuItems: {
+    nodes: MenuItem[];
+  };
 }
 
 interface GetHeaderDataResponse {
@@ -56,8 +56,8 @@ interface GetHeaderDataResponse {
 }
 
 export async function getHeaderData(): Promise<HeaderData> {
-    const data = await fetchAPI<GetHeaderDataResponse>(
-      `
+  const data = await fetchAPI<GetHeaderDataResponse>(
+    `
       query GetHeaderData {
         generalSettings {
           title
@@ -74,13 +74,13 @@ export async function getHeaderData(): Promise<HeaderData> {
         }
       }
       `
-    );
-  
-    return {
-      generalSettings: data.generalSettings,
-      menuItems: data.menu.menuItems,
-    };
-  }
+  );
+
+  return {
+    generalSettings: data.generalSettings,
+    menuItems: data.menu.menuItems,
+  };
+}
 
 // --- Dados de Página Genérica (Hero, Sobre, etc.) ---
 
@@ -125,7 +125,7 @@ export async function getPageData(id: string): Promise<PageData> {
         content
         featuredImage {
           node {
-            sourceUrl(size: LARGE)
+            sourceUrl
           }
         }
         galleryButtonText
@@ -181,7 +181,7 @@ export async function getExperienciasData(): Promise<ExperienciaNode[]> {
           excerpt
           featuredImage {
             node {
-              sourceUrl(size: LARGE)
+              sourceUrl
               altText
             }
           }

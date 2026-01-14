@@ -1,6 +1,6 @@
 import Image from 'next/image';
 // 1. Importamos a interface WpBlock que já existe na sua API
-import type { PageData, WpBlock } from '../../lib/api'; 
+import type { PageData, WpBlock } from '../../lib/api';
 import styles from './Hall.module.css';
 
 interface HallProps {
@@ -20,7 +20,7 @@ export default function Hall({ data }: HallProps) {
   const imageUrl = data.featuredImage?.node?.sourceUrl;
 
   return (
-    <section 
+    <section
       id="hall" // ID para a rolagem do menu
       className={styles.hallSection}
     >
@@ -34,7 +34,7 @@ export default function Hall({ data }: HallProps) {
               alt={title || 'Lacustre Hall'}
               className={styles.image}
               width={600}
-              height={450}
+              height={750}
               unoptimized
             />
           )}
@@ -44,9 +44,9 @@ export default function Hall({ data }: HallProps) {
         <div className={styles.textWrapper}>
           {/* Título (Vindo do Título do WP) */}
           {title && (
-            <h2 
+            <h2
               className={styles.title}
-              dangerouslySetInnerHTML={{ __html: title }} 
+              dangerouslySetInnerHTML={{ __html: title }}
             />
           )}
 
@@ -54,20 +54,20 @@ export default function Hall({ data }: HallProps) {
           {/* 4. Mapeamos os blocos de parágrafo */}
           <div className={styles.mainTextWrapper}>
             {blocks && blocks.map((block: WpBlock, index: number) => {
-              
+
               // Renderizamos apenas os blocos que são parágrafos
               if (block.name === 'core/paragraph') {
-                
+
                 // ========================================================
                 // CORREÇÃO DO ERRO 2: Usamos "as unknown as"
                 // ========================================================
                 const attrs = block.attributes as unknown as ParagraphAttributes;
-                
+
                 return (
-                  <p 
-                    key={index} 
+                  <p
+                    key={index}
                     className={styles.paragraph}
-                    dangerouslySetInnerHTML={{ __html: attrs.content }} 
+                    dangerouslySetInnerHTML={{ __html: attrs.content }}
                   />
                 );
               }

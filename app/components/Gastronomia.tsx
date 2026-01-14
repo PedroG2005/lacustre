@@ -21,7 +21,20 @@ export default function Gastronomia({ data }: GastronomiaProps) {
   return (
     <section id="gastronomia" className={styles.gastroSection}>
       <div className={styles.wrapper}>
-        {/* --- COLUNA 1: TEXTO (Sem o bloco do chef) --- */}
+        {/* --- COLUNA 1: FOTO DO CHEF EM DESTAQUE (Substitui a galeria) --- */}
+        <div className={styles.chefWrapper}>
+          {chefImageUrl && (
+            <Image
+              src={chefImageUrl}
+              alt="Chefs"
+              className={styles.chefImage}
+              width={600}
+              height={750}
+              unoptimized
+            />
+          )}
+        </div>
+        {/* --- COLUNA 2: TEXTO (Sem o bloco do chef) --- */}
         <div className={styles.textWrapper}>
           {title && (
             <h2
@@ -55,28 +68,6 @@ export default function Gastronomia({ data }: GastronomiaProps) {
           <a href="#experiencias" className={styles.button}>
             Conheça Nossas Experiências
           </a>
-        </div>
-
-        {/* --- COLUNA 2: FOTO DO CHEF EM DESTAQUE (Substitui a galeria) --- */}
-        <div className={styles.chefWrapper}>
-          {chefImageUrl && (
-            <Image
-              src={chefImageUrl}
-              alt="Chef Rafa Dantas"
-              className={styles.chefImage}
-              width={200}
-              height={200}
-              unoptimized
-            />
-          )}
-
-          {/* Nome do Chef (Hardcoded) */}
-          <h3 className={styles.chefName}>Rafa Dantas</h3>
-
-          <p className={styles.chefQuote}>
-            “Cozinhar é emocionar e na Lacustre, cada ingrediente conta uma
-            história.”
-          </p>
         </div>
       </div>
     </section>

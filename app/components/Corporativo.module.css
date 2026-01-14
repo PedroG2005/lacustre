@@ -1,7 +1,7 @@
-.hallSection {
+.corporativoSection {
   /* Fundo verde, texto bege (do MIV) */
-  background-color: rgb(var(--background));
-  color: rgb(var(--foreground));
+  background-color: rgb(var(--foreground));
+  color: rgb(var(--background));
 
   padding-top: 100px; /* Compensa o header fixo */
   padding-bottom: 100px;
@@ -19,6 +19,13 @@
   margin-right: auto;
   align-items: start; 
   text-align: center; /* Padrão: centralizado (mobile) */
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%; /* O wrapper acompanha a altura da célula do grid */
+  /* MUDANÇA: Inverte a ordem no mobile (Imagem em cima, Texto embaixo) */
+  order: -1;
 }
 
 /* Em telas de TABLET (768px+), mude o WRAPPER e ALINHE À ESQUERDA */
@@ -40,21 +47,27 @@
   .textWrapper {
     align-items: flex-start; /* Alinha o botão à esquerda */
   }
-
-  .title {
-    text-align: left !important;
-  }
+  
   .paragraph {
     text-align: justify !important;
   }
+  .title {
+    text-align: left !important;
+  }
+
+  /* Reset order for tablet/desktop to keep Image on Right */
+  .imageWrapper {
+    order: 0;
+  }
+
+  
+
 }
 
 
 
-.imageWrapper {
-  width: 100%;
-  height: 100%; /* O wrapper acompanha a altura da célula do grid */
-}
+
+
 
 .image {
   width: 100%;
@@ -94,7 +107,7 @@
   font-size: clamp(1rem, 2.5vw, 1.125rem); /* Era 1.125rem */
   line-height: 1.7;
   opacity: 0.9;
-  text-align: center;
+  text-align: center; /* Padrão: centralizado (mobile) */
 
   /* Adiciona o espaçamento natural entre parágrafos */
   margin-bottom: 1.5rem;
@@ -105,38 +118,6 @@
 /* Garante que o último parágrafo não tenha margem extra */
 .paragraph:last-child {
   margin-bottom: 0;
-}
-
-/* Grid para os 4 destaques */
-.highlightsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 1.5rem; /* Ajuste o gap entre os cards */
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%; /* Garante que o grid ocupe o espaço */
-}
-
-.highlightItem {
-  font-family: var(--font-sans);
-  font-size: clamp(0.9rem, 2vw, 1rem); 
-  line-height: 1.6;
-
-  /* --- MUDANÇA CRUCIAL: Flexbox para centralizar o conteúdo do card --- */
-  display: flex;
-  align-items: center; /* Centraliza verticalmente */
-  justify-content: center; /* Centraliza horizontalmente */
-  text-align: center; /* Garante que o texto em si seja centralizado */
-  padding: 1.5rem; /* Padding interno do card */
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.04);
-  /* Min-height para garantir que os cards tenham altura mínima uniforme */
-  min-height: 8rem; /* Ajuste conforme a necessidade para mobile */
-  box-sizing: border-box; /* Garante que padding e border sejam incluídos na altura/largura */
-
-  /* Permite que o texto quebre em várias linhas dentro do card */
-  white-space: normal;
-  overflow-wrap: break-word;
 }
 
 /* Botão Ocre (copiado do Hero) */
@@ -155,7 +136,7 @@
   align-items: center;
   justify-content: center;
   max-width: 280px; /* Aumentei um pouco a largura máxima para dar mais espaço */
-  margin-top: 1.5rem; /* Ajuste a margem superior para espaçamento do grid */
+  margin-top: 3rem; /* Ajuste a margem superior para espaçamento do grid */
   width: 100%; /* Permite que o botão se expanda em telas menores até o max-width */
   box-sizing: border-box; /* Garante que padding e border sejam incluídos */
 }
@@ -164,23 +145,8 @@
   transform: scale(1.02);
 }
 
-/* Media query para ajustar min-height dos cards em telas maiores */
-@media (min-width: 768px) {
-  .highlightItem {
-    min-height: 6rem; /* Reduz a altura mínima em desktop, se preferir */
-  }
-}
-
 /* Media query para smartphones (ajustes finos se necessário) */
 @media (max-width: 640px) {
-  .highlightsGrid {
-    grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas, se preferir */
-    gap: 1rem;
-  }
-  .highlightItem {
-    min-height: 7rem; /* Garante altura mínima para um bom toque */
-    padding: 1.25rem;
-  }
   .button {
     max-width: 100%; /* Botão ocupa toda a largura em mobile */
     padding: 0.85rem 1.5rem;
