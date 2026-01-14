@@ -1,16 +1,21 @@
-"use client"; // Necessário para 'new Date()'
+"use client";
 import Image from 'next/image';
 import type { HeaderData } from '@/lib/api';
 import styles from './Footer.module.css';
-import { FaInstagram, FaFacebook, FaLinkedin } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaInstagram } from 'react-icons/fa';
 
 interface FooterProps {
   data: HeaderData;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
 }
 
-export default function Footer({ data }: FooterProps) {
+export default function Footer({ data, contactEmail, contactPhone }: FooterProps) {
   const { title, siteLogoUrl } = data.generalSettings;
   const currentYear = new Date().getFullYear();
+
+  const cleanPhone = contactPhone ? contactPhone.replace(/\D/g, '') : '';
+  const whatsappUrl = `https://wa.me/55${cleanPhone}`;
 
   return (
     <footer className={styles.footer}>
@@ -44,14 +49,24 @@ export default function Footer({ data }: FooterProps) {
 
         {/* --- ITEM 3: REDES SOCIAIS (Direita) --- */}
         <div className={styles.socialList}>
+
+          {/* WhatsApp */}
+          {contactPhone && (
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <FaWhatsapp size={24} />
+            </a>
+          )}
+
+          {/* Email */}
+          {contactEmail && (
+            <a href={`mailto:${contactEmail}`} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <FaEnvelope size={24} />
+            </a>
+          )}
+
+          {/* Instagram */}
           <a href="https://www.instagram.com/lacustrehalloficial" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
             <FaInstagram size={24} />
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-            <FaFacebook size={24} />
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-            <FaLinkedin size={24} />
           </a>
         </div>
 

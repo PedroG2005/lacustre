@@ -44,7 +44,11 @@ export default async function Home() {
       <Experiencias pageData={expPageData} experiencias={experienciasData} />
       <Galeria pageData={galeriaPageData} />
       <Contato pageData={contatoData} />
-      <Footer data={headerData} />
+      <Footer
+        data={headerData}
+        contactEmail={contatoData.contactEmail}
+        contactPhone={contatoData.contactPhone}
+      />
 
     </>
   );
