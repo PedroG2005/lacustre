@@ -16,12 +16,7 @@
   --font-serif: 'Playfair Display', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-verde-profundo);
-    --foreground: var(--color-bege);
-  }
-}
+
 
 /* --- RESET GLOBAL --- */
 * {
