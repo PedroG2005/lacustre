@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        - CACHE_BUSTER=${CACHE_BUSTER:-1}
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.local
