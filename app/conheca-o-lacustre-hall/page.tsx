@@ -36,7 +36,10 @@ export default async function LacustreHallBrandingPage() {
       <div className="absolute inset-0 pointer-events-none z-0 opacity-40 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
 
       {/* CONTAINER CENTRALIZADO DA TELA */}
-      <main className="relative z-10 w-full flex-1 flex items-center justify-center py-4 md:py-6">
+      <main 
+        className="relative z-10 w-full flex-1 flex items-center justify-center"
+        style={{ padding: '20px', paddingBottom: '60px' }}
+      >
         
         {/* CAIXA PRINCIPAL DA PÁGINA (Card Flutuante Grande) */}
         <div className="w-full max-w-[1200px] mx-auto px-8 sm:px-12 md:px-14 lg:px-20 flex flex-col md:flex-row items-center md:items-center justify-between gap-12 lg:gap-20">
@@ -72,7 +75,7 @@ export default async function LacustreHallBrandingPage() {
                )}
 
                {/* Parágrafos dinâmicos vindos do WP */}
-               {blocks && blocks.length > 0 && (
+               {blocks && Array.isArray(blocks) && blocks.length > 0 && (
                  <div className="text-[#3c4a3c] text-[15.5px] font-medium leading-[1.7] pr-4 space-y-4">
                    {blocks.map((block: any, index: number) => {
                      if (block.name === 'core/paragraph') {

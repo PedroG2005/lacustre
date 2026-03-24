@@ -1,10 +1,11 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* Esta linha é a mais importante: ela ativa a exportação estática 
-     que gera a pasta 'out'.
-  */
+  /* Esta linha ativa a exportação estática que gera a pasta 'out'. */
   output: 'export',
+
+  /* Força a criação de pastas com index.html dentro (ex: conheca-o-lacustre-hall/index.html) */
+  trailingSlash: true,
 
   /* No cPanel (servidor estático), o Next.js não consegue processar 
      otimização de imagens em tempo real. Por isso, definimos como 'unoptimized'.

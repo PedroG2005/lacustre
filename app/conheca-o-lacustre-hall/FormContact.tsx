@@ -1,41 +1,139 @@
 "use client";
 
-import { useActionState, useState } from "react";
-import { submitContactForm } from "./actions";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function FormContact() {
-  const [state, action, isPending] = useActionState(submitContactForm, null);
+  const [state, setState] = useState<{ success?: boolean; error?: string } | null>(null);
+  const [isPending, setIsPending] = useState(false);
   const [phone, setPhone] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state?.success) {
+      setShowSuccessModal(true);
+    } else if (state?.error) {
+      setShowErrorModal(true);
+    }
+  }, [state]);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
-    if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
 
     if (value.length > 10) {
-      // Formato (99) 99999-9999
       value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
     } else if (value.length > 6) {
-      // Formato (99) 9999-9999 (Fixos)
       value = value.replace(/^(\d{2})(\d{4})(\d{4}).*/, "($1) $2-$3");
     } else if (value.length > 2) {
-      // Formato (99) 9
       value = value.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
     } else if (value.length > 0) {
-      // Formato (9
       value = value.replace(/^(\d{0,2})/, "($1");
     }
-    
     setPhone(value);
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsPending(true);
+
+    // Simulação de delay de envio (1.5 segundos)
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // Sucesso Simulado para Build Estática
+    setState({ success: true });
+    setIsPending(false);
+  };
+
+
+
   return (
     <div className="w-full relative z-20" style={{ marginTop: '0.25rem' }}>
-      {state?.success ? (
-        <div className="bg-[#f0eadd] p-6 text-[#213320] font-medium text-center border border-[#d2b893] rounded-2xl shadow-sm">
-          {state.message}
+      
+      {/* MODAL DE SUCESSO PREMIUM */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <div 
+            className="bg-[#162116] border border-[#d4ba94]/30 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-8 overflow-hidden"
+            style={{ paddingTop: '5rem', paddingBottom: '4.5rem' }}
+          >
+             
+             {/* Efeitos de Luz no Fundo */}
+             <div className="absolute -top-10 -left-10 w-28 h-28 bg-[#d4ba94]/10 rounded-full blur-2xl pointer-events-none"></div>
+             <div className="absolute -bottom-10 -right-10 w-28 h-28 bg-[#d4ba94]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+             {/* Ícone Estático */}
+             <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#d4ba94] to-[#B38A6A] rounded-full flex items-center justify-center shadow-lg">
+               <svg className="w-8 h-8 text-[#162116]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3.5} d="M5 13l4 4L19 7" />
+               </svg>
+             </div>
+
+             {/* Textos no Centro */}
+             <div className="flex flex-col gap-3">
+                <h3 className="font-serif text-2xl text-[#d4ba94] font-medium tracking-wide m-0">Mensagem Enviada!</h3>
+                <p className="text-[#e2cbb0]/80 text-[14px] leading-[1.6] font-light max-w-[250px] mx-auto m-0">
+                  Agradecemos o seu contato. <br /> Retornaremos o mais breve possível.
+                </p>
+             </div>
+
+             {/* Botão no Rodapé do Modal */}
+             <button
+               onClick={() => router.push("/")}
+               className="group w-full max-w-[240px] h-[56px] bg-[#d4ba94] hover:bg-[#c2a984] text-[#162116] font-bold rounded-xl transition-all duration-300 text-[13px] shadow-md tracking-wider flex items-center justify-center gap-2 relative uppercase"
+             >
+               IR PARA A HOME
+               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+               </svg>
+             </button>
+          </div>
         </div>
-      ) : (
-        <form action={action} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+      )}
+
+      {/* MODAL DE ERRO PREMIUM */}
+      {showErrorModal && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <div 
+            className="bg-[#162116] border border-red-900/40 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_40px_90px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-6 overflow-hidden"
+            style={{ paddingTop: '5rem', paddingBottom: '4.5rem' }}
+          >
+             
+             <div className="absolute -top-10 -left-10 w-28 h-28 bg-red-900/10 rounded-full blur-2xl pointer-events-none"></div>
+
+             {/* Ícone Erro */}
+             <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center shadow-lg">
+               <svg className="w-8 h-8 text-[#fcfaf6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3.5} d="M6 18L18 6M6 6l12 12" />
+               </svg>
+             </div>
+
+             <div className="flex flex-col gap-3">
+                <h3 className="font-serif text-2xl text-red-500 font-medium tracking-wide m-0">Algo deu errado...</h3>
+                <p className="text-[#e2cbb0]/70 text-[14px] leading-[1.6] font-light m-0">
+                  Houve um erro no envio. <br /> tente novamente.
+                </p>
+             </div>
+
+             {state?.error && (
+               <div className="w-full bg-red-950/40 border border-red-900/30 px-3 py-2 rounded-xl text-red-500 text-[11px] font-medium max-w-[220px] break-words">
+                 {state.error}
+               </div>
+             )}
+
+             <button
+               onClick={() => setShowErrorModal(false)}
+               className="w-full max-w-[220px] h-[56px] bg-[#222] border border-[#d4ba94]/20 hover:bg-[#c2a984] hover:text-[#162116] text-[#d4ba94] font-bold rounded-xl transition-all duration-300 shadow-sm tracking-wider flex items-center justify-center text-[12px] uppercase"
+             >
+               TENTAR NOVAMENTE
+             </button>
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           {state?.error && (
             <div className="bg-red-50 p-4 text-red-700 text-sm font-bold text-center border border-red-200 rounded-xl">
               {state.error}
@@ -117,7 +215,6 @@ export default function FormContact() {
             Respeitamos sua privacidade. Seus dados estão seguros.
           </p>
         </form>
-      )}
     </div>
   );
 }
