@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
      (ex: meusite.com.br/projeto), adicione a linha abaixo:
      basePath: '/projeto',
   */
+  serverExternalPackages: ["nodemailer"],
 };
 
 export default nextConfig;

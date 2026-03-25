@@ -1,6 +1,6 @@
 # /Lacustre/nextjs-app/Dockerfile
 
-FROM node:20-alpine
+FROM node:20
 WORKDIR /app
 ARG CACHE_BUSTER=1
 COPY package*.json ./
