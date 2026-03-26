@@ -15,6 +15,10 @@ export default function FormContact() {
   useEffect(() => {
     if (state?.success) {
       setShowSuccessModal(true);
+      // Disparo do Meta Pixel
+      if (typeof (window as any).fbq !== "undefined") {
+        (window as any).fbq("track", "Lead");
+      }
     } else if (state?.error) {
       setShowErrorModal(true);
     }
