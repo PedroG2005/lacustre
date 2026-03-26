@@ -29,13 +29,34 @@ if (!$name || !$email || !$phone) {
     exit;
 }
 
-// 2. Validar reCAPTCHA (Opcional, mas recomendado)
+// 2. Validar reCAPTCHA
 $recaptchaSecret = "6LfVXpUsAAAAAJlvO9lEX93oI41G7sObIMWiKobQ";
 if ($recaptchaSecret && $recaptchaToken) {
-    $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$recaptchaSecret.'&response='.$recaptchaToken);
-    $responseData = json_decode($verifyResponse);
-    if (!$responseData->success) {
-        echo json_encode(['success' => false, 'error' => 'Falha na validação do reCAPTCHA.']);
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = [
+        'secret'   => $recaptchaSecret,
+        'response' => $recaptchaToken
+    ];
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    
+    $response = curl_exec($ch);
+    $curl_error = curl_error($ch);
+    curl_close($ch);
+
+    if ($response === false) {
+        echo json_encode(['success' => false, 'error' => 'Erro de conexão com Google: ' . $curl_error]);
+        exit;
+    }
+
+    $responseData = json_decode($response);
+    if (!$responseData || !$responseData->success) {
+        echo json_encode(['success' => false, 'error' => 'Falha na validação do reCAPTCHA. Verifique suas chaves.']);
         exit;
     }
 }
