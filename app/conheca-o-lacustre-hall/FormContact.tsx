@@ -72,11 +72,24 @@ export default function FormContact() {
 
       {/* MODAL DE SUCESSO PREMIUM */}
       {showSuccessModal && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div 
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md cursor-pointer"
+          onClick={() => setShowSuccessModal(false)}
+        >
           <div
-            className="bg-[#162116] border border-[#d4ba94]/30 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-8 overflow-hidden"
+            className="bg-[#162116] border border-[#d4ba94]/30 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-8 overflow-hidden cursor-default"
             style={{ paddingTop: '5rem', paddingBottom: '4.5rem' }}
+            onClick={(e) => e.stopPropagation()}
           >
+            {/* Botão Fechar (X) */}
+            <button 
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-6 right-8 text-[#d4ba94]/50 hover:text-[#d4ba94] transition-colors p-2"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
             {/* Efeitos de Luz no Fundo */}
             <div className="absolute -top-10 -left-10 w-28 h-28 bg-[#d4ba94]/10 rounded-full blur-2xl pointer-events-none"></div>
@@ -121,11 +134,24 @@ export default function FormContact() {
 
       {/* MODAL DE ERRO PREMIUM */}
       {showErrorModal && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div 
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md cursor-pointer"
+          onClick={() => setShowErrorModal(false)}
+        >
           <div
-            className="bg-[#162116] border border-red-900/40 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_40px_90px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-6 overflow-hidden"
+            className="bg-[#162116] border border-red-900/40 px-8 max-w-sm w-full rounded-[2.5rem] text-center shadow-[0_40px_90px_-10px_rgba(0,0,0,0.8)] relative flex flex-col items-center gap-6 overflow-hidden cursor-default"
             style={{ paddingTop: '5rem', paddingBottom: '4.5rem' }}
+            onClick={(e) => e.stopPropagation()}
           >
+            {/* Botão Fechar (X) */}
+            <button 
+              onClick={() => setShowErrorModal(false)}
+              className="absolute top-6 right-8 text-red-500/50 hover:text-red-500 transition-colors p-2"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
             <div className="absolute -top-10 -left-10 w-28 h-28 bg-red-900/10 rounded-full blur-2xl pointer-events-none"></div>
 

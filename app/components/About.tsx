@@ -16,15 +16,15 @@ export default function About({ data }: AboutProps) {
   const blocks = data.blocks;
 
   return (
-    <section 
+    <section
       id="sobre" // ID para a rolagem do menu
       className={styles.aboutSection}
     >
       {/* Título (Vindo do Título do WP) */}
       {title && (
-        <h2 
+        <h2
           className={styles.title}
-          dangerouslySetInnerHTML={{ __html: title }} 
+          dangerouslySetInnerHTML={{ __html: title }}
         />
       )}
 
@@ -47,11 +47,11 @@ export default function About({ data }: AboutProps) {
             }
             return null;
           })}
-      </div>  
+      </div>
 
       {/* --- Mini-blocos (Hardcoded) --- */}
       <div className={styles.blocksWrapper}>
-        
+
         <div className={styles.block}>
           <h3 className={styles.blockTitle}>Missão</h3>
           <p className={styles.blockText}>
@@ -62,7 +62,7 @@ export default function About({ data }: AboutProps) {
         <div className={styles.block}>
           <h3 className={styles.blockTitle}>Visão</h3>
           <p className={styles.blockText}>
-            Ser referência nacional em eventos e gastronomia de alto padrão.
+            Ser referência nacional em eventos de alto padrão.
           </p>
         </div>
 
@@ -76,8 +76,8 @@ export default function About({ data }: AboutProps) {
 
       {/* --- INÍCIO DA MUDANÇA --- */}
       {/* Botão Call-to-Action (Hardcoded) */}
-      <a 
-        href="#contato" 
+      <a
+        href="#contato"
         className={styles.button}
       >
         Fale Conosco

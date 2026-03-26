@@ -41,11 +41,11 @@ if ($recaptchaSecret && $recaptchaToken) {
 }
 
 // 3. Configurações de SMTP do seu cPanel
-$smtp_host = "mail.lacustre.com.br";
-$smtp_port = 587;
-$smtp_user = "contato@lacustre.com.br"; // <-- SUBSTITUA pelo seu e-mail real criado no cPanel
-$smtp_pass = "SUA_SENHA_AQUI";        // <-- SUBSTITUA pela senha do e-mail acima
-$to        = "contato@lacustre.com.br"; // <-- O e-mail que vai receber as propostas
+$smtp_host = "lacustre.com.br";
+$smtp_port = 465;
+$smtp_user = "site@lacustre.com.br"; 
+$smtp_pass = "Dubbox@2026";        
+$to        = "comercial@lacustre.com.br"; 
 
 // 4. Montar o E-mail (HTML)
 $subject = "Nova Solicitação de Proposta: $name";

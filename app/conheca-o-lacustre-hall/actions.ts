@@ -61,7 +61,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   try {
     await transporter.sendMail({
       from: `"Lacustre Hall Site" <${smtpUser}>`, // Remetente deve ser o mesmo usuário do SMTP geralmente
-      to: process.env.RECEIVER_EMAIL || "contato@lacustre.com.br", // Para onde vai o e-mail
+      to: process.env.RECEIVER_EMAIL || "comercial@lacustre.com.br", // Para onde vai o e-mail
       replyTo: email, // Quando responder, vai para o cliente
       subject: `Solicitação de Proposta (Site): ${name}`,
       html: `
