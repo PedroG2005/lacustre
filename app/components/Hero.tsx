@@ -2,7 +2,7 @@
 
 // --- INÍCIO DA CORREÇÃO ---
 // Mudamos o caminho do import de '@/lib/api' para o caminho relativo
-import type { PageData } from '../../lib/api'; 
+import type { PageData } from '../../lib/api';
 // --- FIM DA CORREÇÃO ---
 
 import styles from './Hero.module.css';
@@ -17,7 +17,7 @@ export default function Hero({ data }: HeroProps) {
   const imageUrl = data.featuredImage?.node?.sourceUrl;
 
   return (
-    <section 
+    <section
       id="inicio" // ID para a rolagem do menu
       className={styles.hero}
       style={{
@@ -28,12 +28,12 @@ export default function Hero({ data }: HeroProps) {
       <div className={styles.overlay} /> {/* Overlay escuro */}
 
       <div className={styles.content}>
-        
+
         {/* Título Principal (Vindo do "Resumo") */}
         {headline && (
-          <h1 
+          <h1
             className={styles.headline}
-            dangerouslySetInnerHTML={{ __html: headline }} 
+            dangerouslySetInnerHTML={{ __html: headline }}
           />
         )}
 
@@ -42,7 +42,10 @@ export default function Hero({ data }: HeroProps) {
           <a href="#experiencias" className={styles.button}>
             Conheça nossas experiências
           </a>
-          <a href="#contato" className={styles.buttonSecondary}>
+          <a href="https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0"
+            className={styles.buttonSecondary}
+            target="_blank"
+            rel="noopener noreferrer">
             Agende sua visita
           </a>
         </div>

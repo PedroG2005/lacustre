@@ -52,10 +52,12 @@ export default function Header({ data }: HeaderProps) {
               key={item.id}
               href={item.path}
               className={
-                item.path === '#contato'
+                item.path === 'https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0'
                   ? styles.contactButton
                   : styles.navLink
               }
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)} // Fecha o menu ao clicar
             >
               {item.label}
