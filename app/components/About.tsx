@@ -77,8 +77,10 @@ export default function About({ data }: AboutProps) {
       {/* --- INÍCIO DA MUDANÇA --- */}
       {/* Botão Call-to-Action (Hardcoded) */}
       <a
-        href="#contato"
+        href="https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0"
         className={styles.button}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         Fale Conosco
       </a>

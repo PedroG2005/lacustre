@@ -19,6 +19,10 @@ export default function FormContact() {
       if (typeof (window as any).fbq !== "undefined") {
         (window as any).fbq("track", "Lead");
       }
+      // Disparo do Google Ads (Site Kit / Conversão)
+      if (typeof (window as any).gtag !== "undefined") {
+        (window as any).gtag("event", "conversion", { send_to: "AW-18036549224" });
+      }
     } else if (state?.error) {
       setShowErrorModal(true);
     }

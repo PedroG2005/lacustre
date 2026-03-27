@@ -50,7 +50,10 @@ export default function Corporativo({ data }: CorporativoProps) {
                     </div>
 
                     {/* Botão */}
-                    <a href="#contato" className={styles.button}>
+                    <a href="https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0"
+                        className={styles.button}
+                        target="_blank"
+                        rel="noopener noreferrer">
                         Solicite um orçamento
                     </a>
                 </div>

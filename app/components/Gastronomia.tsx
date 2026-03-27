@@ -19,7 +19,7 @@ export default function Gastronomia({ data }: GastronomiaProps) {
   const chefImageUrl = data.featuredImage?.node?.sourceUrl;
 
   return (
-    <section id="gastronomia" className={styles.gastroSection}>
+    <section id="eventos" className={styles.gastroSection}>
       <div className={styles.wrapper}>
         {/* --- COLUNA 1: FOTO DO CHEF EM DESTAQUE (Substitui a galeria) --- */}
         <div className={styles.chefWrapper}>
@@ -28,8 +28,8 @@ export default function Gastronomia({ data }: GastronomiaProps) {
               src={chefImageUrl}
               alt="Chefs"
               className={styles.chefImage}
-              width={600}
-              height={750}
+              width={400}
+              height={400}
               unoptimized
             />
           )}
@@ -65,7 +65,10 @@ export default function Gastronomia({ data }: GastronomiaProps) {
             })}
           {/* --- FIM DA MUDANÇA --- */}
 
-          <a href="#experiencias" className={styles.button}>
+          <a href="https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0"
+            className={styles.button}
+            target="_blank"
+            rel="noopener noreferrer">
             Conheça Nossas Experiências
           </a>
         </div>

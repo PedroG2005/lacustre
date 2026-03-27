@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import type { PageData, ExperienciaNode } from '../../lib/api'; 
+import type { PageData, ExperienciaNode } from '../../lib/api';
 import styles from './Experiencias.module.css';
 
 // O componente agora recebe DUAS props:
@@ -11,32 +11,32 @@ interface ExperienciasProps {
 export default function Experiencias({ pageData, experiencias }: ExperienciasProps) {
   // Usamos os dados da página (Início, Sobre, etc.)
   const title = pageData.title;
-  const subtext = pageData.content; 
+  const subtext = pageData.content;
 
   return (
-    <section 
+    <section
       id="experiencias" // ID para a rolagem do menu
       className={styles.expSection}
     >
       {/* --- Header da Seção (vindo da Página) --- */}
       <div className={styles.header}>
         {title && (
-          <h2 
+          <h2
             className={styles.title}
-            dangerouslySetInnerHTML={{ __html: title }} 
+            dangerouslySetInnerHTML={{ __html: title }}
           />
         )}
         {subtext && (
-          <div 
+          <div
             className={styles.subtext}
-            dangerouslySetInnerHTML={{ __html: subtext }} 
+            dangerouslySetInnerHTML={{ __html: subtext }}
           />
         )}
       </div>
 
       {/* --- Grid de 4 Colunas (vindo do CPT) --- */}
       <div className={styles.gridWrapper}>
-        
+
         {/* Mapeamos a prop 'experiencias' em vez do array 'experiences' */}
         {experiencias.map((exp) => {
           const imageUrl = exp.featuredImage?.node?.sourceUrl;
@@ -44,7 +44,7 @@ export default function Experiencias({ pageData, experiencias }: ExperienciasPro
 
           return (
             <div key={exp.id} className={styles.card}>
-              
+
               {/* O Bloco Quadrado da Imagem */}
               <div className={styles.imageWrapper}>
                 {imageUrl ? (
@@ -64,7 +64,7 @@ export default function Experiencias({ pageData, experiencias }: ExperienciasPro
               <h3 className={styles.cardTitle}>{exp.title}</h3>
               {/* CORREÇÃO: Usamos o 'excerpt' (Resumo) para o texto */}
               {exp.excerpt && (
-                <div 
+                <div
                   className={styles.cardText}
                   dangerouslySetInnerHTML={{ __html: exp.excerpt }}
                 />
@@ -72,7 +72,7 @@ export default function Experiencias({ pageData, experiencias }: ExperienciasPro
             </div>
           );
         })}
-        
+
         {/* --- CORREÇÃO --- */}
         {/* O BOTÃO FOI MOVIDO DE DENTRO DO GRID... */}
         {/* --- FIM DA CORREÇÃO --- */}
@@ -81,10 +81,11 @@ export default function Experiencias({ pageData, experiencias }: ExperienciasPro
 
       {/* --- CORREÇÃO --- */}
       {/* ...PARA FORA DO GRID. */}
-      <a 
-        href="#contato" 
+      <a
+        href="https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0"
         className={styles.button}
-      >
+        target="_blank"
+        rel="noopener noreferrer">
         Fale Conosco
       </a>
       {/* --- FIM DA CORREÇÃO --- */}
