@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import Link from 'next/link';
 import type { HeaderData } from '@/lib/api';
 import styles from './Footer.module.css';
 import { FaWhatsapp, FaEnvelope, FaInstagram } from 'react-icons/fa';
@@ -23,7 +24,7 @@ export default function Footer({ data, contactEmail, contactPhone }: FooterProps
 
         {/* --- ITEM 1: LOGO (Esquerda) --- */}
         <div className={styles.logoWrapper}>
-          <a href="#" className={styles.logoLink}>
+          <Link href="/" className={styles.logoLink}>
             {siteLogoUrl ? (
               <Image
                 src={siteLogoUrl}
@@ -37,7 +38,7 @@ export default function Footer({ data, contactEmail, contactPhone }: FooterProps
             ) : (
               <span className={styles.logoText}>{title}</span>
             )}
-          </a>
+          </Link>
         </div>
 
         {/* --- ITEM 2: COPYRIGHT (Centro) --- */}
@@ -45,6 +46,9 @@ export default function Footer({ data, contactEmail, contactPhone }: FooterProps
           <p className={styles.copyright}>
             Copyright © {currentYear} {title}
           </p>
+          <Link href="/politica-de-privacidade" className={styles.privacyLink}>
+            Política de Privacidade
+          </Link>
         </div>
 
         {/* --- ITEM 3: REDES SOCIAIS (Direita) --- */}

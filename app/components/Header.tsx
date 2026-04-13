@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { HeaderData, MenuItem } from '@/lib/api';
 import styles from './Header.module.css';
 
@@ -18,7 +19,7 @@ export default function Header({ data }: HeaderProps) {
     <header className={styles.header}>
       <div className={styles.container}>
         {/* Logo */}
-        <a href="#" className={styles.logoLink}>
+        <Link href="/" className={styles.logoLink}>
           {siteLogoUrl ? (
             <Image
               src={siteLogoUrl}
@@ -32,7 +33,7 @@ export default function Header({ data }: HeaderProps) {
           ) : (
             <span className={styles.logoText}>{title}</span>
           )}
-        </a>
+        </Link>
 
         {/* Botão do menu mobile */}
         <button
@@ -47,22 +48,26 @@ export default function Header({ data }: HeaderProps) {
 
         {/* Navegação */}
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
-          {menuItems.map((item: MenuItem) => (
-            <a
-              key={item.id}
-              href={item.path}
-              className={
-                item.path === 'https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0'
-                  ? styles.contactButton
-                  : styles.navLink
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)} // Fecha o menu ao clicar
-            >
-              {item.label}
-            </a>
-          ))}
+          {menuItems.map((item: MenuItem) => {
+            const href = item.path.startsWith('#') ? `/${item.path}` : item.path;
+
+            return (
+              <a
+                key={item.id}
+                href={href}
+                className={
+                  item.path === 'https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0'
+                    ? styles.contactButton
+                    : styles.navLink
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)} // Fecha o menu ao clicar
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
       </div>
     </header>

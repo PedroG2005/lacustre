@@ -1,8 +1,12 @@
 "use server";
 
-import nodemailer from "nodemailer";
-
 export async function submitContactForm(prevState: any, formData: FormData) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const nodemailer = typeof window === "undefined" ? require("nodemailer") : null;
+  
+  if (!nodemailer) {
+    return { success: false, error: "Ambiente de execução inválido." };
+  }
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const phone = formData.get("phone") as string;

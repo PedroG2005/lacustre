@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { submitContactForm } from "./actions";
+import Link from "next/link";
 
 export default function FormContact() {
   const [state, setState] = useState<{ success?: boolean; error?: string } | null>(null);
@@ -66,6 +66,7 @@ export default function FormContact() {
         setState({ success: false, error: "Erro ao conectar com o serviço de e-mail no cPanel." });
       }
     } else {
+      const { submitContactForm } = await import("./actions");
       const result = await submitContactForm(null, formData);
       setState(result);
     }
@@ -260,9 +261,10 @@ export default function FormContact() {
             color: '#1a2b1a',
             paddingTop: '16px',
             paddingBottom: '16px',
-            borderRadius: '1.25rem'
+            borderRadius: '1.25rem',
+            fontSize: 'clamp(11px, 3.5vw, 15px)' // Fonte responsiva no botão
           }}
-          className="group w-full font-bold px-6 shadow-md hover:shadow-xl active:scale-[0.98] hover:!bg-[#1a2b1a] hover:!text-[#B38A6A] disabled:opacity-70 text-[15px] mt-6 mb-3 relative transition-all duration-300 uppercase tracking-widest border border-[#916E53]/30 cursor-pointer"
+          className="group w-full font-bold px-6 shadow-md hover:shadow-xl active:scale-[0.98] hover:!bg-[#1a2b1a] hover:!text-[#B38A6A] disabled:opacity-70 mt-6 mb-3 relative transition-all duration-300 uppercase tracking-widest border border-[#916E53]/30 cursor-pointer"
         >
           {/* Efeito Brilho que acende um pouco mais no hover */}
           <div className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-[1.25rem]"></div>
@@ -272,7 +274,7 @@ export default function FormContact() {
 
         {/* Mensagem Rodapé do Formulário */}
         <p className="text-[12px] text-[#5b6b5b] font-medium text-center">
-          Respeitamos sua privacidade. Seus dados estão seguros.
+          Seus dados serão utilizados conforme nossa <Link href="/politica-de-privacidade" className="underline text-[#27351d] hover:opacity-80 transition-all font-semibold">Política de Privacidade</Link>.
         </p>
       </form>
     </div>

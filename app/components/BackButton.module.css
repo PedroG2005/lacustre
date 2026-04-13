@@ -1,0 +1,29 @@
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #27351d;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  padding: 0.5rem 1rem 0.5rem 0.8rem; /* Mais espaço à esquerda */
+  white-space: nowrap;
+  margin-left: -0.8rem; /* Mantém o alinhamento visual apesar do padding */
+}
+
+.backButton:hover {
+  opacity: 1;
+  transform: translateX(-1px); /* Deslocamento mínimo para evitar qualquer corte */
+  color: #27351d;
+}
+
+@media (max-width: 768px) {
+  .backButton {
+    font-size: 0.9rem;
+  }
+}

@@ -33,10 +33,6 @@
   }
   
   /* --- ITEM 1: LOGO --- */
-  .logoWrapper {
-    /* No desktop, o 'space-between' o empurra para a esquerda */
-  }
-  
   .logoLink { 
     display: block; 
   }
@@ -53,16 +49,17 @@
   /* --- ITEM 2: COPYRIGHT --- */
   .copyrightWrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 1.5rem; /* Mais espaço entre os itens lado a lado */
     text-align: center;
-    /* No desktop, o 'space-between' o mantém no centro */
   }
   
   .copyright {
     font-family: var(--font-sans);
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.85rem;
     opacity: 0.7;
     margin: 0;
     white-space: nowrap; /* Impede que o copyright quebre a linha */
@@ -70,9 +67,9 @@
   
   .privacyLink {
     font-family: var(--font-sans);
-    font-size: 0.8rem; /* 12px */
+    font-size: 0.85rem;
     opacity: 0.7;
-    text-transform: uppercase;
+    text-transform: none;
     text-decoration: none;
     color: rgb(var(--background));
     white-space: nowrap;
