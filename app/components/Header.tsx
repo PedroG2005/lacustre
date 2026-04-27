@@ -49,23 +49,39 @@ export default function Header({ data }: HeaderProps) {
         {/* Navegação */}
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
           {menuItems.map((item: MenuItem) => {
+            const isExternal =
+              item.target === '_blank' || item.path.startsWith('http');
             const href = item.path.startsWith('#') ? `/${item.path}` : item.path;
+            const isContactButton =
+              item.path ===
+              'https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0';
+
+            if (isExternal) {
+              return (
+                <a
+                  key={item.id}
+                  href={href}
+                  className={
+                    isContactButton ? styles.contactButton : styles.navLink
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              );
+            }
 
             return (
-              <a
+              <Link
                 key={item.id}
                 href={href}
-                className={
-                  item.path === 'https://api.whatsapp.com/send/?phone=5561999497879&text&type=phone_number&app_absent=0'
-                    ? styles.contactButton
-                    : styles.navLink
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuOpen(false)} // Fecha o menu ao clicar
+                className={styles.navLink}
+                onClick={() => setMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>

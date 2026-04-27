@@ -31,6 +31,7 @@ export interface MenuItem {
   id: string;
   label: string;
   path: string;
+  target: string | null;
 }
 
 export interface HeaderData {
@@ -69,6 +70,7 @@ export async function getHeaderData(): Promise<HeaderData> {
               id
               label
               path
+              target
             }
           }
         }
