@@ -49,26 +49,36 @@ export default function FormContact() {
     setIsPending(true);
 
     const formData = new FormData(e.currentTarget);
+    
+    const data = {
+      nome: formData.get('name'),
+      email: formData.get('email'),
+      telefone: formData.get('phone') || '',
+      mensagem: formData.get('mensagem') || formData.get('message') || ''
+    };
 
-    // Se estivermos em produção (build estática para cPanel), usamos o PHP Bridge.
-    // Em desenvolvimento local (Docker), continuamos usando o Server Action original.
-    if (process.env.NODE_ENV === 'production') {
-      try {
-        const data = Object.fromEntries(formData.entries());
-        const res = await fetch('/send-email.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const result = await res.json();
-        setState(result);
-      } catch (err) {
-        setState({ success: false, error: "Erro ao conectar com o serviço de e-mail no cPanel." });
+    try {
+      const res = await fetch('http://localhost:8080/api/v1/leads.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': 'd45c962c474b5470f9ad9a0f69ff1176'
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await res.json();
+      
+      if (result.success || res.ok) {
+        setState({ success: true });
+        // Limpar o form
+        (e.target as HTMLFormElement).reset();
+        setPhone("");
+      } else {
+        setState({ success: false, error: result.error || "Erro ao processar sua solicitação." });
       }
-    } else {
-      const { submitContactForm } = await import("./actions");
-      const result = await submitContactForm(null, formData);
-      setState(result);
+    } catch (err) {
+      setState({ success: false, error: "Erro de conexão com o servidor. Tente novamente." });
     }
 
     setIsPending(false);
